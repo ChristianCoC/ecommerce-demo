@@ -14,7 +14,7 @@ export class Order {
   product: Product;
   @Column()
   cantidad: number;
-  @Column("date")
+  @Column("timestamp", { default: () => "CURRENT_TIMESTAMP" })
   fecha: Date;
   // ... otros campos relevantes
 }

@@ -3,9 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/users.entity';
 import { Order } from './entities/orders.entity';
 import { Product } from './entities/products.entity';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AppRepository } from './app.repository';
 
 @Module({
-  imports: [
+  imports: [ TypeOrmModule.forFeature([User, Order, Product]),
     TypeOrmModule.forRoot({
       type: 'postgres',
       database: 'eco_db',
@@ -18,7 +21,7 @@ import { Product } from './entities/products.entity';
       logging: true,
     })
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService, AppRepository],
 })
 export class AppModule { }
